@@ -3,16 +3,23 @@
 
 
 require_once 'sistema/configuracao.php';
-include_once 'helpers.php';
+include_once 'sistema/Nucleo/helpers.php';
 include './sistema/Nucleo/Mensagem.php';
 
-$msg = new Mensagem();
+use sistema\Nucleo\Mensagem;
 
-echo $msg->sucesso('Mensagem de sucesso')->rendereizar();
-echo '<hr>';
-echo $msg->erro('Mensagem de erro')->rendereizar();
-echo '<hr>';
-echo $msg->alerta('Mensagem de alerta')->rendereizar();
-echo '<hr>';
-echo $msg->informa('Mensagem de informação')->rendereizar();
+
+// echo $msg->sucesso('Mensagem de sucesso')->rendereizar();
+// echo '<hr>';
+// echo $msg->erro('Mensagem de erro')->rendereizar();
+// echo '<hr>';
+// echo $msg->alerta('Mensagem de alerta')->rendereizar();
+// echo '<hr>';
+// echo $msg->informa('Mensagem de informação')->rendereizar();
+
+
+// echo (new Mensagem())->erro('mensagem de erro')->rendereizar();
+
+echo (new Mensagem)->erro('texto de alerta');
+
 echo '<hr>';

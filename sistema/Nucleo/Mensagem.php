@@ -1,4 +1,7 @@
 <?php
+
+namespace sistema\Nucleo;
+
 /**
  * @author Ramon Ribeiro Noleto <devnoleto@gmail.com>
  */
@@ -6,6 +9,14 @@ class Mensagem
 {
     private $texto;
     private $css;
+
+    /**
+     * Método Mágico para retornar mensagem já renderizada;
+     */
+    public function __toString()
+    {
+        return $this->renderizar();
+    }
 
     public function sucesso(string $mensagem): Mensagem
     {
@@ -39,7 +50,7 @@ class Mensagem
      * Método responsavel pela rendereização
      * @return string
      */
-    public function rendereizar(): string
+    public function renderizar(): string
     {
         return "<div class='{$this->css}'>{$this->texto}</div>";
     }
