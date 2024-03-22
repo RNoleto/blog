@@ -1,5 +1,38 @@
 <?php
 
+function validarCpf(string $cpf): bool
+{
+    $cpf = limparNumero($cpf);
+    if(mb_strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    for ($t = 9; $t < 11; $t++) {
+        for ($d = 0, $c = 0; $c < $t; $c++) {
+            $d += $cpf[$c] * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf[$c] != $d) {
+            return false;
+        }
+    }
+    return true;
+}
+/**
+ * Limpa o numero recebido
+ * @param string $string
+ * @return string numero - retorna apenas os numeros
+ */
+function limparNumero(string $numero): string
+{
+    return $limparNumero = preg_replace('/[^0-9]/', '', $numero);
+}
+
+/**
+ * Gera url amigável
+ * @param string $string
+ * @return string slug
+ */
 function slug(string $string): string
 {
     $mapa['a'] = ''; //falta ajustar aqui
@@ -145,6 +178,8 @@ function saudacao(): string
 {
     $hora = date('H');
 
+    //Estrutura if
+
     // if ($hora >= 0 && $hora <= 5) {
     //     $saudacao = 'boa madrugada';
     // } elseif ($hora >= 6 && $hora <= 12) {
@@ -155,19 +190,30 @@ function saudacao(): string
     //     $saudacao = 'boa noite';
     // }
 
-    switch($hora){
-        case $hora >= 0 && $hora <= 5 :
-            $saudacao = 'boa madrugada';
-            break;
-        case $hora >= 6 && $hora <= 12:
-            $saudacao = 'bom dia';
-            break;
-        case $hora >= 13 && $hora <= 17:
-            $saudacao = 'boa tarde';
-            break;
-        default: $saudacao = 'boa noite';
-    }
+    //Estrutura switch
 
+    // switch($hora){
+    //     case $hora >= 0 && $hora <= 5 :
+    //         $saudacao = 'boa madrugada';
+    //         break;
+    //     case $hora >= 6 && $hora <= 12:
+    //         $saudacao = 'bom dia';
+    //         break;
+    //     case $hora >= 13 && $hora <= 17:
+    //         $saudacao = 'boa tarde';
+    //         break;
+    //     default: $saudacao = 'boa noite';
+    // }
+
+    //Estrutura match
+
+    $saudacao = match (true){
+        $hora >= 0 and $hora <= 5 => 'boa madrugada',
+        $hora >= 6 and $hora <= 12 => 'bom dia',
+        $hora >= 13 and $hora <= 17 => 'boa tarde',
+        
+        default => 'boa noite',
+    };
     return $saudacao;
 }
 
