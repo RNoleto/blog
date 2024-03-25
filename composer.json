@@ -14,11 +14,11 @@
         {
             "name": "Ramon Noleto",
             "email": "devnoleto@gmail.com"
-
         }
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=8.0",
         "pecee/simple-router": "dev-master"
     }
 }
