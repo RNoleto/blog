@@ -2,6 +2,7 @@
 
 namespace sistema\Suporte;
 use Twig\Lexer;
+use sistema\Nucleo\Helpers;
 
 class Template
 
@@ -27,6 +28,22 @@ class Template
 
     private function helpers():void
     {
-
+        array(
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('url', function(string $url = null){
+                    return Helpers::url($url);
+                }),
+            ),
+            $this->twig->addFunction(
+                new \Twig\TwigFunction('saudacao', function(){
+                    return Helpers::saudacao();
+                })
+            ),
+            $this->twig->addFunction(
+                 new \Twig\TwigFunction('resumirTexto', function(string $texto, int $limite){
+                    return Helpers::resumirTexto($texto, $limite);
+                 })
+                )
+            );
     }
 }
