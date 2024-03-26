@@ -1,8 +1,11 @@
 <?php
 
 namespace sistema\Suporte;
+use Twig\Lexer;
 
 class Template
+
+
 {
     private \Twig\Environment $twig;
 
@@ -10,10 +13,20 @@ class Template
     {
         $loader = new \Twig\Loader\FilesystemLoader($diretorio);
         $this->twig = new \Twig\Environment($loader);
+
+        $lexer = new Lexer($this->twig, array(
+            $this->helpers()
+        ));
+        $this->twig->setLexer($lexer);
     }
 
-    public function renderizar(string $view, array $dados)
+    public function renderizar(string $view, array $dados):string
     {
         return $this->twig->render($view, $dados);
+    }
+
+    private function helpers():void
+    {
+
     }
 }
