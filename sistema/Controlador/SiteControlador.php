@@ -28,4 +28,11 @@ class SiteControlador extends Controlador
             'subtitulo' => 'Teste de Subtitulo Sobre'
         ]);
     }
+
+    public function erro404():void
+    {
+        echo $this->template->renderizar('404.html', [
+            'titulo' => 'Página não encontrada'
+        ]);
+    }
 }
