@@ -2,21 +2,25 @@
 
 {% block conteudo %}
 
-<div class="container py-5">
-    <div class="row">
-        {% for post in posts %}
-            <div class="col-md-3">
-                <div class="card mb-4">
-                    <div class="card-body">
-                      <a href="{{url('post/'~post.id)}}">
-                        <h5 class="card-title">{{post.titulo}}</h5>
-                      <p class="card-text">{{resumirTexto(post.texto, 150)}}</p>
-                      </a>
+<div class="row">
+    <div class="col-lg-9 col-md-12">
+        <div class="container py-5">
+                {% for post in posts %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                              <a href="{{url('post/'~post.id)}}" tooltip="tooltip" title="{{post.titulo}}">
+                                <h4 class="card-title">{{post.titulo}}</h4>
+                              <p class="card-text">{{resumirTexto(post.texto, 150)}}</p>
+                              </a>
+                            </div>
+                          </div>
                     </div>
-                  </div>
-            </div>
-        {% endfor %}
+                {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-3">
+        {% include'sidebar.html '%}
     </div>
 </div>
-
 {% endblock %}
